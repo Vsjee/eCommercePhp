@@ -1,7 +1,7 @@
 <?php 
     include_once './php/connection.php';
 
-    $query = "SELECT ID, PNAME, PRICE, PAVAILABILITY, PDESCRIPTION FROM products WHERE PAVAILABILITY = 1";
+    $query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION FROM products WHERE P_AVAILABILITY = 1";
 
     $res_query = mysqli_query($connection, $query);
 
@@ -54,24 +54,24 @@
                 <article class="col">
                     <article class="card shadow-sm overflow-hidden">
                         <picture>
-                            <img src="<?php echo $value['PURL'];?>" alt="iphone" width="400" height="400" style="object-fit: cover;" class="itemSell">
+                            <img src="<?php echo $value['P_URL'];?>" alt="iphone" width="400" height="400" style="object-fit: cover;" class="itemSell">
                         </picture>
                         <article class="card-body">
                             <h3 class="card-title">
                             <?php
-                                echo $value['PNAME'];
+                                echo $value['P_NAME'];
                             ?>
                             </h3>
                             <p class="card-text">
                                 <strong>Descripción: </strong>
                                 <?php 
-                                    echo $value['PDESCRIPTION']
+                                    echo $value['P_DESCRIPTION']
                                 ?>
                             </p>
                             <p class="card-text">
                                 COP $
                                 <?php 
-                                    echo $value['PRICE']
+                                    echo $value['P_RICE']
                                 ?>
                             </p>
                             
