@@ -48,7 +48,45 @@
     </header>
 
     <main>
-      <section class="container mt-5"></section>
+      <section class="container mt-5">
+        <h3 class="text-center">Registrar producto</h3>
+        <form
+          action="../php/registerProducts/registerProduct.php"
+          method="post"
+          class="d-flex flex-column gap-4 justify-content-center align-items-center pt-5"
+        >
+          <input
+            type="text"
+            name="Nombre"
+            placeholder="Nombre del producto"
+            required
+            class="w-75 p-1"
+          />
+          <input
+            type="number"
+            name="Precio"
+            placeholder="Precio del producto"
+            required
+            class="w-75 p-1"
+          />
+          <input
+            type="text"
+            name="Url"
+            placeholder="Url (imagen del producto)"
+            required
+            class="w-75 p-1"
+          />
+          <textarea
+            type="text"
+            name="Descripcion"
+            placeholder="Descripcion de producto max 300 characteres"
+            required
+            class="w-75 p-1"
+            style="height: 200px; resize: none"
+          ></textarea>
+          <button class="btn btn-primary">Registrar</button>
+        </form>
+      </section>
     </main>
   </body>
 </html>
