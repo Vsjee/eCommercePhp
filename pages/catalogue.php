@@ -70,7 +70,7 @@
                             <p class="card-text">
                                 COP $
                                 <?php 
-                                    echo $value['P_RICE']
+                                    echo $value['P_PRICE']
                                 ?>
                             </p>
                             
