@@ -50,37 +50,43 @@
                 <?php 
                     foreach ($res_query as $key => $value) {
                 ?>
-                <article class="col">
-                    <article class="card shadow-sm overflow-hidden">
+                <article class="col" style="height: 850px;">
+                    <article class="card shadow-sm overflow-hidden "style="height: 800px;">
                         <picture>
                             <img src="<?php echo $value['P_URL'];?>" alt="iphone" width="400" height="400" style="object-fit: cover;" class="itemSell">
                         </picture>
-                        <article class="card-body">
-                            <h3 class="card-title">
-                            <?php
-                                echo $value['P_NAME'];
-                            ?>
-                            </h3>
-                            <p class="card-text">
-                                <strong>Descripción: </strong>
-                                <?php 
-                                    echo $value['P_DESCRIPTION']
+                        <article class="card-body d-flex flex-column justify-content-between">
+                            <article>
+                                <h3 class="card-title">
+                                <?php
+                                    echo $value['P_NAME'];
                                 ?>
-                            </p>
-                            <p class="card-text">
-                                COP $
-                                <?php 
-                                    echo $value['P_PRICE']
-                                ?>
-                            </p>
+                                </h3>
+                                <p class="card-text">
+                                    <strong>Descripción: </strong>
+                                    <?php 
+                                        echo $value['P_DESCRIPTION']
+                                    ?>
+                                </p>
+                            </article>
                             
-                            <article class="d-flex justify-content-between align-items-center">
-                                <a href="" class="btn btn-error">
-                                    Detalles
-                                </a>
-                                <a href="" class="btn btn-success">
-                                    Agregar
-                                </a>
+                            <article >
+                                <p class="card-text">
+                                    <strong>
+                                        COP $
+                                        <?php 
+                                        echo $value['P_PRICE']
+                                        ?>
+                                    </strong>
+                                </p>
+                                <article class="d-flex justify-content-between align-items-center">
+                                    <a href="" class="btn btn-error">
+                                        Detalles
+                                    </a>
+                                    <a href="" class="btn btn-success">
+                                        Agregar
+                                    </a>
+                                </article>
                             </article>
 
                         </article>
