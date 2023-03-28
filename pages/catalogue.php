@@ -44,6 +44,21 @@
     </header>
 
     <main>
+        <section class="container mt-5 d-flex align-items-center justify-content-between">
+            <h3>Filtrar</h3>
+                <form action="./catalogue.php" method="post" class="d-flex gap-5">
+                    <select name="Category" id="Category">
+                        <option value="all">all</option>
+                        <option value="electronic">Electronicos</option>
+                        <option value="mobile">Mobiles</option>
+                        <option value="computer">Computadores</option>
+                        <option value="hardware">Hardware</option>
+                        <option value="hearphones">Audiculares</option>
+                        <option value="toy">Juguetes</option>
+                    </select>
+                    <button class="btn btn-primary">buscar</button>
+                </form>
+        </section>
         <section class="container mt-5">
             <article class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
 
