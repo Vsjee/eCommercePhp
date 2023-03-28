@@ -1,11 +1,24 @@
 <?php 
     include_once '../php/connection.php';
 
-    $query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION FROM products WHERE P_AVAILABILITY = 1";
+    $Category = $_POST['Category'];
 
-    $res_query = mysqli_query($connection, $query);
+    global $products_list;
+    global $num_rows;
 
-    $products = mysqli_num_rows($res_query);
+    if($Category == '' || $Category == 'all') {
+        $query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION FROM products WHERE P_AVAILABILITY = 1";
+        
+        $products_list = mysqli_query($connection, $query);
+        
+        $num_rows = mysqli_num_rows($products_list);
+    } else {
+        $filtered_query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION, P_CATEGORY FROM products WHERE P_CATEGORY = '$Category'";
+
+        $products_list = mysqli_query($connection, $filtered_query);
+        
+        $num_rows = mysqli_num_rows($products_list);
+    }
 
     mysqli_close($connection);
 ?>
@@ -63,7 +76,7 @@
             <article class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
 
                 <?php 
-                    foreach ($res_query as $key => $value) {
+                    foreach ($products_list as $key => $value) {
                 ?>
                 <article class="col" style="height: 850px;">
                     <article class="card shadow-sm overflow-hidden "style="height: 800px;">
