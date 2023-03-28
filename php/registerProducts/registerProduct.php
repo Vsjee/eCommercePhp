@@ -5,6 +5,8 @@
   $Precio = $_POST['Precio'];
   $Url = $_POST['Url'];
   $Descripcion = $_POST['Descripcion'];
+  $Descripcion = $_POST['Descripcion'];
+  $Categoria = $_POST['Categoria'];
 
   $product_exists = "SELECT `P_NAME` FROM `products` WHERE P_NAME = '$Nombre'";
   $query_if_product_exists = mysqli_query($connection, $product_exists);
@@ -23,14 +25,16 @@
       `P_DISCOUNT`, 
       `P_AVAILABILITY`, 
       `P_URL`, 
-      `P_DESCRIPTION`
+      `P_DESCRIPTION`,
+      `P_CATEGORY`
     ) VALUES (
       '$Nombre',
       '$Precio',
       '$P_DISCOUNT_D',
       '$P_AVAILABILITY_D',
       '$Url',
-      '$Descripcion'
+      '$Descripcion',
+      '$Categoria'
       )";
     $insert_data = mysqli_query($connection, $query_insert_data);
 
