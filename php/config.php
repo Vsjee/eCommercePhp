@@ -3,6 +3,7 @@
     $output = false;
     $encrypt_method = "AES-256-CBC";
 
+    //this key is only for practice purposes you can deleted or whatever
     $SECRET_KEY = "35da6adf74e359868271f1b68dec076dbb285b0a4459821bd39e92cc402614a9";
     $SECRET_IV = "35da6adf74e359@868271f1b68de";
 
