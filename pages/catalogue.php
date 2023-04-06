@@ -1,26 +1,27 @@
 <?php 
     include_once '../php/connection.php';
+    include_once '../php/config.php';
 
-    $Category = $_POST['Category'];
+    $CategoryP = $_POST['Category'];
 
-    global $products_list;
-    global $num_rows;
+    global $data;
+    global $numRows;
 
-    if($Category == '' || $Category == 'all') {
-        $query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION FROM products WHERE P_AVAILABILITY = 1";
-        
-        $products_list = mysqli_query($connection, $query);
-        
-        $num_rows = mysqli_num_rows($products_list);
+    if($CategoryP=="electronic" || $CategoryP=="mobile"||$CategoryP=="hearphones"||$CategoryP=="computer"||$CategoryP=="hardware"||$CategoryP=="toy") {
+        $query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION, P_CATEGORY FROM products WHERE P_CATEGORY = '$CategoryP'";
+
+        $data = mysqli_query($connection, $query);
+
+        $numRows = mysqli_num_rows($data);
     } else {
-        $filtered_query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION, P_CATEGORY FROM products WHERE P_CATEGORY = '$Category'";
+        $query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION FROM products WHERE P_AVAILABILITY = 1";
 
-        $products_list = mysqli_query($connection, $filtered_query);
-        
-        $num_rows = mysqli_num_rows($products_list);
+        $data = mysqli_query($connection, $query);
+    
+        $numRows = mysqli_num_rows($data);
     }
 
-    mysqli_close($connection);
+    mysqli_close($connection    );
 ?>
 
 <!DOCTYPE html>
@@ -57,26 +58,26 @@
     </header>
 
     <main>
-        <section class="container mt-5 d-flex align-items-center justify-content-between">
-            <h3>Filtrar</h3>
-                <form action="./catalogue.php" method="post" class="d-flex gap-5">
-                    <select name="Category" id="Category">
-                        <option value="all">all</option>
-                        <option value="electronic">Electronicos</option>
-                        <option value="mobile">Mobiles</option>
-                        <option value="computer">Computadores</option>
-                        <option value="hardware">Hardware</option>
-                        <option value="hearphones">Audiculares</option>
-                        <option value="toy">Juguetes</option>
-                    </select>
-                    <button class="btn btn-primary">buscar</button>
-                </form>
+        <section class="container mt-5 d-flex gap-5 align-items-center justify-content-evenly">
+            <h3>Filtros de busqueda</h3>
+            <form action="./catalogue.php" class="d-flex gap-5" method="post">
+                <select name="Category" id="Category">
+                    <option value="all">no filtros</option>
+                    <option value="electronic">Electronicos</option>
+                    <option value="mobile">Mobiles</option>
+                    <option value="hearphones">Audiculares</option>
+                    <option value="computer">Computadores</option>
+                    <option value="hardware">Hardware</option>
+                    <option value="toy">Juguetes</option>
+                </select>
+                <button class="btn btn-primary">buscar</button>
+            </form>
         </section>
         <section class="container mt-5">
             <article class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-
-                <?php 
-                    foreach ($products_list as $key => $value) {
+                <?php
+                    foreach ($data as $key => $value) {
+                        $id = encryptor('encrypt', $value['P_ID']);
                 ?>
                 <article class="col" style="height: 850px;">
                     <article class="card shadow-sm overflow-hidden "style="height: 800px;">
@@ -108,7 +109,7 @@
                                     </strong>
                                 </p>
                                 <article class="d-flex justify-content-between align-items-center">
-                                    <a href="" class="btn btn-error">
+                                    <a href="./productInfo.php?id=<?php echo $id?>" class="btn btn-error">
                                         Detalles
                                     </a>
                                     <a href="" class="btn btn-success">
@@ -116,7 +117,6 @@
                                     </a>
                                 </article>
                             </article>
-
                         </article>
                     </article>
                 </article>
