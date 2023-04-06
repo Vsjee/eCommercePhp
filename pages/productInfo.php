@@ -22,6 +22,8 @@
       $num_rows = mysqli_num_rows($related_products);
     }
   }
+
+  mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
