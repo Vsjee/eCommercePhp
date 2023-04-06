@@ -21,7 +21,7 @@
         $numRows = mysqli_num_rows($data);
     }
 
-    mysqli_close($connection    );
+    mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
