@@ -39,7 +39,7 @@
     <header>
         <section class="navbar navbar-expand-lg navbar-dark bg-dark">
             <article class="container">
-                <a href="../index.php" class="navbar-brad">
+                <a href="../index.php" class="navbar-brad link-warning">
                     <strong>Tech Store</strong>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
@@ -51,7 +51,7 @@
                         <li class="nav-item"><a href="#"class="nav-link active">Catalogo</a></li>
                         <li class="nav-item"><a href="./registerProducts.html" class="nav-link active">Registrar Producto</a></li>
                     </ul>
-                    <a href="" class="btn btn-primary">Carrito</a>
+                    <a href="" class="btn btn-warning">Carrito</a>
                 </article> 
             </article>
         </section>
@@ -70,7 +70,7 @@
                     <option value="hardware">Hardware</option>
                     <option value="toy">Juguetes</option>
                 </select>
-                <button class="btn btn-primary">buscar</button>
+                <button class="btn btn-danger">buscar</button>
             </form>
         </section>
         <section class="container mt-5">
@@ -112,7 +112,7 @@
                                     <a href="./productInfo.php?id=<?php echo $id?>" class="btn btn-error">
                                         Detalles
                                     </a>
-                                    <a href="" class="btn btn-success">
+                                    <a href="" class="btn btn-danger">
                                         Agregar
                                     </a>
                                 </article>

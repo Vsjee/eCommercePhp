@@ -13,7 +13,7 @@
     <header>
         <section class="navbar navbar-expand-lg navbar-dark bg-dark">
             <article class="container">
-                <a href="./index.php" class="navbar-brad">
+                <a href="./index.php" class="navbar-brad link-warning">
                     <strong>Tech Store</strong>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
@@ -25,7 +25,7 @@
                         <li class="nav-item"><a href="./pages/catalogue.php"class="nav-link active">Catalogo</a></li>
                         <li class="nav-item"><a href="./pages/registerProducts.html" class="nav-link active">Registrar Producto</a></li>
                     </ul>
-                    <a href="" class="btn btn-primary">Carrito</a>
+                    <a href="" class="btn btn-warning">Carrito</a>
                 </article> 
             </article>
         </section>
