@@ -4,6 +4,8 @@ include_once '../php/config.php';
 
 session_start();
 
+$_SESSION["shopping_cart"] = [];
+
 $CategoryP = $_POST['Category'];
 
 global $data;
@@ -126,7 +128,7 @@ mysqli_close($connection);
                     $discountValue = $value['P_PRICE'] * $value['P_DISCOUNT'] / 100;
                     $discount = $value['P_PRICE'] - $discountValue;
                 ?>
-                    <form method="post" action="cart.php?action=add&id=<?php echo $value["P_ID"]; ?>">
+                    <form method="post" action="cart.php?action=add&id=<?php echo $value["P_ID"]; ?>" data-aos="fade-up">
                         <div style="background-color:#f1f1f1; border-radius:5px;" class="card shadow-sm overflow-hidden" style="height: 800px;">
                             <img src="<?php
                                         if ($value["P_URL"]) {

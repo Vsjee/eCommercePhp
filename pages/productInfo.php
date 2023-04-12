@@ -4,6 +4,8 @@ include_once '../php/config.php';
 
 session_start();
 
+$_SESSION["shopping_cart"] = [];
+
 global $item;
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
