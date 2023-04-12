@@ -75,7 +75,12 @@ mysqli_close($connection);
                         <div class="carousel__item">
                             <a class="prod" href="./pages/productInfo.php?id=<?php echo $id ?>">
                                 <h5><?php echo $value['P_NAME'] ?></h5>
-                                <img src="<?php echo $value['P_URL'] ?>" alt="<?php echo $value['P_NAME'] ?>" title="<?php echo $value['P_NAME'] ?>" class="item__img">
+                                <img src="<?php
+                                            if ($value["P_URL"]) {
+                                                echo $value["P_URL"];
+                                            } else {
+                                                echo "https://www.fml.com.mx/wp-content/uploads/2016/04/Race-Registration-Image-Not-Found.png";
+                                            } ?>" alt="<?php echo $value['P_NAME'] ?>" title="<?php echo $value['P_NAME'] ?>" class="item__img">
                             </a>
                         </div>
                     <?php

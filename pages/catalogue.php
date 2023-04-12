@@ -121,7 +121,12 @@ mysqli_close($connection);
                 ?>
                     <form method="post" action="cart.php?action=add&id=<?php echo $value["P_ID"]; ?>">
                         <div style="background-color:#f1f1f1; border-radius:5px;" class="card shadow-sm overflow-hidden" style="height: 800px;">
-                            <img src="<?php echo $value["P_URL"]; ?>" class="img-responsive" width="400" height="400" style="object-fit: cover;" /><br />
+                            <img src="<?php
+                                        if ($value["P_URL"]) {
+                                            echo $value["P_URL"];
+                                        } else {
+                                            echo "https://www.fml.com.mx/wp-content/uploads/2016/04/Race-Registration-Image-Not-Found.png";
+                                        } ?>" class="img-responsive" width="400" height="400" style="object-fit: cover;" /><br />
                             <article class="card-body d-flex flex-column justify-content-between">
                                 <article>
                                     <h4 class="card-title"><?php echo $value["P_NAME"]; ?></h4>
