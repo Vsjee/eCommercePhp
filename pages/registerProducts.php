@@ -36,7 +36,10 @@ session_start();
           <a href="./cart.php" class="btn btn-warning">
             Carrito
             <span class="btn btn-success rounded-circle m-0 pl-1 pr-1">
-              <?php echo count($_SESSION["shopping_cart"]) ?>
+              <?php
+              if ($_SESSION["shopping_cart"])
+                echo count($_SESSION["shopping_cart"])
+              ?>
             </span>
           </a>
         </article>
