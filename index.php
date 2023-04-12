@@ -48,8 +48,11 @@ mysqli_close($connection);
                         Carrito
                         <span class="btn btn-success rounded-circle m-0 pl-1 pr-1">
                             <?php
-                            if ($_SESSION["shopping_cart"])
-                                echo count($_SESSION["shopping_cart"])
+                            if ($_SESSION["shopping_cart"]) {
+                                echo count($_SESSION["shopping_cart"]);
+                            } else {
+                                echo 0;
+                            }
                             ?>
                         </span>
                     </a>
