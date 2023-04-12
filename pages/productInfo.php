@@ -61,7 +61,7 @@ mysqli_close($connection);
         <article class="collapse navbar-collapse" id="navbarHeader">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item"><a href="./catalogue.php" class="nav-link active">Catalogo</a></li>
-            <li class="nav-item"><a href="./registerProducts.html" class="nav-link active">Registrar Producto</a></li>
+            <li class="nav-item"><a href="./registerProducts.php" class="nav-link active">Registrar Producto</a></li>
           </ul>
           <a href="./cart.php" class="btn btn-warning">
             Carrito
