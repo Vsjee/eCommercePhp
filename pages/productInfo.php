@@ -2,6 +2,8 @@
 include_once '../php/connection.php';
 include_once '../php/config.php';
 
+session_start();
+
 global $item;
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
@@ -61,46 +63,59 @@ mysqli_close($connection);
             <li class="nav-item"><a href="./catalogue.php" class="nav-link active">Catalogo</a></li>
             <li class="nav-item"><a href="./registerProducts.html" class="nav-link active">Registrar Producto</a></li>
           </ul>
-          <a href="" class="btn btn-warning">Carrito</a>
+          <a href="./cart.php" class="btn btn-warning">
+            Carrito
+            <span class="btn btn-success rounded-circle m-0 pl-1 pr-1">
+              <?php
+              if ($_SESSION["shopping_cart"])
+                echo count($_SESSION["shopping_cart"])
+              ?>
+            </span>
+          </a>
         </article>
       </article>
     </section>
-    <article class="product">
-      <article class="product__img">
-        <picture>
-          <img src="<?php
-                    if ($result["P_URL"]) {
-                      echo $result["P_URL"];
-                    } else {
-                      echo "https://www.fml.com.mx/wp-content/uploads/2016/04/Race-Registration-Image-Not-Found.png";
-                    } ?>" alt="<?php echo $result['P_NAME'] ?>" width="600" height="400">
-        </picture>
+    <form method="post" action="./cart.php?action=add&id=<?php echo $result["P_ID"]; ?>">
+      <article class="product">
+        <article class="product__img">
+          <picture>
+            <img src="<?php
+                      if ($result["P_URL"]) {
+                        echo $result["P_URL"];
+                      } else {
+                        echo "https://www.fml.com.mx/wp-content/uploads/2016/04/Race-Registration-Image-Not-Found.png";
+                      } ?>" alt="<?php echo $result['P_NAME'] ?>" width="600" height="400">
+          </picture>
+        </article>
+        <article class="product__add">
+          <div class="add__top">
+            <h2>
+              <?php echo $result['P_NAME'] ?>
+            </h2>
+            <h2>
+              $<?php echo $result['P_PRICE'] ?>
+            </h2>
+          </div>
+          <div class="add__bottom">
+            <input type="number" name="quantity" class="form-control mt-4 mb-4" value="1" />
+            <input type="hidden" name="hidden_name" value="<?php echo $result["P_NAME"]; ?>" />
+            <input type="hidden" name="hidden_price" value="<?php echo $discount; ?>" />
+            <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
+          </div>
+        </article>
       </article>
-      <article class="product__add">
-        <div class="add__top">
-          <h2>
-            <?php echo $result['P_NAME'] ?>
-          </h2>
-          <h2>
-            $<?php echo $result['P_PRICE'] ?>
-          </h2>
-        </div>
-        <div class="add__bottom">
-          <a href="" class="btn btn-danger">Agregar</a>
-        </div>
-      </article>
-    </article>
-    <section class="container pb-5">
-      <article>
-        <h4>Descripcion</h4>
-        <p>
-          <?php echo $result['P_DESCRIPTION'] ?>
-        </p>
-        <h5>Categoria</h5>
-        <p>
-          <?php echo $result['P_CATEGORY'] ?>
-        </p>
-      </article>
+      <section class="container pb-5">
+        <article>
+          <h4>Descripcion</h4>
+          <p>
+            <?php echo $result['P_DESCRIPTION'] ?>
+          </p>
+          <h5>Categoria</h5>
+          <p>
+            <?php echo $result['P_CATEGORY'] ?>
+          </p>
+        </article>
+    </form>
     </section>
     <section class="container mt-5 mb-5 pt-5 pb-5">
       <h3 class="mb-5 text-center">Productos relacionados</h3>
