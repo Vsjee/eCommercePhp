@@ -10,18 +10,22 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
   if (!empty($id_decrypted)) {
     //fetch curr product
-    $item_query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION, P_CATEGORY FROM products WHERE P_ID = '$id_decrypted'";
+    $item_query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION, P_DISCOUNT, P_CATEGORY FROM products WHERE P_ID = '$id_decrypted'";
     $item = mysqli_query($connection, $item_query);
     $result = mysqli_fetch_array($item);
 
     //fetch related products
     $curr_category = $result['P_CATEGORY'];
     $curr_prodName = $result['P_NAME'];
-    $related_products_query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION, P_CATEGORY FROM products WHERE P_CATEGORY = '$curr_category' AND P_NAME != '$curr_prodName'";
+    $related_products_query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION, P_DISCOUNT, P_CATEGORY FROM products WHERE P_CATEGORY = '$curr_category' AND P_NAME != '$curr_prodName'";
     $related_products =  mysqli_query($connection, $related_products_query);
     $num_rows = mysqli_num_rows($related_products);
   }
 }
+
+//discount
+$discountValue = $result['P_PRICE'] * $result['P_DISCOUNT'] / 100;
+$discount = $result['P_PRICE'] - $discountValue;
 
 mysqli_close($connection);
 ?>

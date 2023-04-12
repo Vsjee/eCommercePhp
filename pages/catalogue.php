@@ -10,13 +10,13 @@ global $data;
 global $numRows;
 
 if ($CategoryP == "electronic" || $CategoryP == "mobile" || $CategoryP == "hearphones" || $CategoryP == "computer" || $CategoryP == "hardware" || $CategoryP == "toy") {
-    $query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION, P_CATEGORY FROM products WHERE P_CATEGORY = '$CategoryP'";
+    $query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION, P_DISCOUNT, P_CATEGORY FROM products WHERE P_CATEGORY = '$CategoryP'";
 
     $data = mysqli_query($connection, $query);
 
     $numRows = mysqli_num_rows($data);
 } else {
-    $query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION FROM products WHERE P_AVAILABILITY = 1";
+    $query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DISCOUNT, P_DESCRIPTION FROM products WHERE P_AVAILABILITY = 1";
 
     $data = mysqli_query($connection, $query);
 
@@ -118,6 +118,10 @@ mysqli_close($connection);
                 <?php
                 foreach ($data as $key => $value) {
                     $id = encryptor('encrypt', $value['P_ID']);
+
+                    //discount
+                    $discountValue = $value['P_PRICE'] * $value['P_DISCOUNT'] / 100;
+                    $discount = $value['P_PRICE'] - $discountValue;
                 ?>
                     <form method="post" action="cart.php?action=add&id=<?php echo $value["P_ID"]; ?>">
                         <div style="background-color:#f1f1f1; border-radius:5px;" class="card shadow-sm overflow-hidden" style="height: 800px;">
@@ -140,7 +144,7 @@ mysqli_close($connection);
                                 <h4 class="text-danger mt-4">$ <?php echo $value["P_PRICE"]; ?></h4>
                                 <input type="text" name="quantity" class="form-control mt-4" value="1" />
                                 <input type="hidden" name="hidden_name" value="<?php echo $value["P_NAME"]; ?>" />
-                                <input type="hidden" name="hidden_price" value="<?php echo $value["P_PRICE"]; ?>" />
+                                <input type="hidden" name="hidden_price" value="<?php echo $discount; ?>" />
                                 <article>
                                     <article class="d-flex justify-content-between align-items-center mt-3">
                                         <a href="./productInfo.php?id=<?php echo $id ?>" class="btn btn-error">
