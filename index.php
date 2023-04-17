@@ -4,8 +4,6 @@ include_once './php/config.php';
 
 session_start();
 
-$_SESSION["shopping_cart"] = [];
-
 $feature_products_query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION, P_CATEGORY FROM products ORDER BY RAND() LIMIT 5";
 $feature_products = mysqli_query($connection, $feature_products_query);
 
@@ -46,7 +44,7 @@ mysqli_close($connection);
                     </ul>
                     <a href="./pages/cart.php" class="btn btn-warning">
                         Carrito
-                        <span class="btn btn-success rounded-circle m-0 pl-1 pr-1">
+                        <span>
                             <?php
                             if ($_SESSION["shopping_cart"]) {
                                 echo count($_SESSION["shopping_cart"]);
@@ -56,6 +54,7 @@ mysqli_close($connection);
                             ?>
                         </span>
                     </a>
+                    <a href="./auth/login/login.php" class="btn btn-success">Login</a>
                 </article>
             </article>
         </section>

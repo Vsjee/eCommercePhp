@@ -4,8 +4,6 @@ include_once '../php/config.php';
 
 session_start();
 
-$_SESSION["shopping_cart"] = [];
-
 $CategoryP = $_POST['Category'];
 
 global $data;
@@ -86,7 +84,7 @@ mysqli_close($connection);
                     <div class="cart_div">
                         <a href="./cart.php" class="btn btn-warning">
                             Carrito
-                            <span class="btn btn-success rounded-circle m-0 pl-1 pr-1">
+                            <span>
                                 <?php
                                 if ($_SESSION["shopping_cart"]) {
                                     echo count($_SESSION["shopping_cart"]);
