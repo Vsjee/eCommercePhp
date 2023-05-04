@@ -42,7 +42,7 @@ if (empty($_SESSION["user"])) {
               Carrito
               <span>
                 <?php
-                if ($_SESSION["shopping_cart"]) {
+                if (!empty($_SESSION["shopping_cart"])) {
                   echo count($_SESSION["shopping_cart"]);
                 } else {
                   echo 0;
@@ -50,7 +50,7 @@ if (empty($_SESSION["user"])) {
                 ?>
               </span>
             </a>
-            <a href="../../auth/login/login.php" class="btn btn-primary">Logout</a>
+            <a href="../../auth/logout.php" class="btn btn-primary">Logout</a>
           </div>
         </article>
       </article>
