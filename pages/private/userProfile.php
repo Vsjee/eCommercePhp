@@ -5,7 +5,7 @@ if (empty($_SESSION["user"])) {
   header("Location: ../../auth/login.php");
   exit();
 } else {
-  echo "Soy un mensaje secreto";
+  echo '<script>console.log("Soy un mensaje secreto, estamos en tu perfil.")</script>';
 }
 ?>
 
