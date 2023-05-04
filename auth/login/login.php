@@ -37,18 +37,26 @@ session_start();
             <li class="nav-item"><a href="../../pages/registerProducts.php" class="nav-link active">Registrar Producto</a></li>
           </ul>
           <div class="cart_div">
-            <a href="../../pages/cart.php" class="btn btn-warning">
-              Carrito
-              <span>
-                <?php
-                if (!empty($_SESSION["shopping_cart"])) {
-                  echo count($_SESSION["shopping_cart"]);
-                } else {
-                  echo 0;
-                }
-                ?>
-              </span>
-            </a>
+            <?php
+            if (!empty($_SESSION["shopping_cart"])) {
+              echo count($_SESSION["shopping_cart"]);
+
+            ?>
+              <a href="../../pages/cart.php" class="btn btn-warning">
+                Carrito
+                <span>
+                  <?php
+                  if (!empty($_SESSION["shopping_cart"])) {
+                    echo count($_SESSION["shopping_cart"]);
+                  } else {
+                    echo 0;
+                  }
+                  ?>
+                </span>
+              </a>
+            <?php
+            }
+            ?>
           </div>
         </article>
       </article>

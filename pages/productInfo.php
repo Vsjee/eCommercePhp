@@ -64,21 +64,21 @@ mysqli_close($connection);
             <li class="nav-item"><a href="./registerProducts.php" class="nav-link active">Registrar Producto</a></li>
           </ul>
           <div>
-            <a href="./cart.php" class="btn btn-warning">
-              Carrito
-              <span>
-                <?php
-                if (!empty($_SESSION["shopping_cart"])) {
-                  echo count($_SESSION["shopping_cart"]);
-                } else {
-                  echo 0;
-                }
-                ?>
-              </span>
-            </a>
             <?php
             if (!empty($_SESSION["user"])) {
             ?>
+              <a href="./cart.php" class="btn btn-warning">
+                Carrito
+                <span>
+                  <?php
+                  if (!empty($_SESSION["shopping_cart"])) {
+                    echo count($_SESSION["shopping_cart"]);
+                  } else {
+                    echo 0;
+                  }
+                  ?>
+                </span>
+              </a>
               <a href="../pages/private/userProfile.php" class="btn btn-success">Profile</a>
             <?php
             } else {
