@@ -42,19 +42,31 @@ mysqli_close($connection);
                         <li class="nav-item"><a href="./pages/catalogue.php" class="nav-link active">Catalogo</a></li>
                         <li class="nav-item"><a href="./pages/registerProducts.php" class="nav-link active">Registrar Producto</a></li>
                     </ul>
-                    <a href="./pages/cart.php" class="btn btn-warning">
-                        Carrito
-                        <span>
-                            <?php
-                            if ($_SESSION["shopping_cart"]) {
-                                echo count($_SESSION["shopping_cart"]);
-                            } else {
-                                echo 0;
-                            }
-                            ?>
-                        </span>
-                    </a>
-                    <a href="./auth/login/login.php" class="btn btn-success">Login</a>
+                    <div>
+                        <a href="./pages/cart.php" class="btn btn-warning">
+                            Carrito
+                            <span>
+                                <?php
+                                if (!empty($_SESSION["shopping_cart"])) {
+                                    echo count($_SESSION["shopping_cart"]);
+                                } else {
+                                    echo 0;
+                                }
+                                ?>
+                            </span>
+                        </a>
+                        <?php
+                        if (!empty($_SESSION["user"])) {
+                        ?>
+                            <a href="./pages/private/userProfile.php" class="btn btn-success">Profile</a>
+                        <?php
+                        } else {
+                        ?>
+                            <a href="./auth/login/login.php" class="btn btn-primary">Login</a>
+                        <?php
+                        }
+                        ?>
+                    </div>
                 </article>
             </article>
         </section>
