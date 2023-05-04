@@ -1,4 +1,6 @@
 <?php
+include '../../php/config.php';
+
 session_start();
 
 if (empty($_SESSION["user"])) {
@@ -20,6 +22,29 @@ if (empty($_SESSION["user"])) {
 
   <!-- bootstrap cdn -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <style>
+    .list__text--before {
+      margin-left: 5%;
+      margin-top: 5rem;
+    }
+
+    .list {
+      display: grid;
+      grid-auto-rows: 24rem;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+      grid-auto-flow: dense;
+      gap: 2rem;
+      margin: 5rem 2%;
+      padding: 0;
+      list-style: none;
+    }
+
+    .img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+  </style>
 </head>
 
 <body>
@@ -59,8 +84,37 @@ if (empty($_SESSION["user"])) {
 
   <main>
     <section class="container mt-5 d-flex flex-column gap-5 align-items-center justify-content-evenly">
-      <h3>User</h3>
       <h4>Bienvenid@ otra vez <?php echo $_SESSION["user"] ?></h4>
+    </section>
+
+    <section class="mt-5">
+      <h5 class="list__text--before">Listado productos que tienes en tu carrito</h5>
+      <ul class="list">
+        <?php
+        if (!empty($_SESSION["shopping_cart"])) {
+          $total = 0;
+          foreach ($_SESSION["shopping_cart"] as $keys => $values) {
+            $id = encryptor("encrypt", $values["item_id"]);
+        ?>
+            <li>
+              <a href="../productInfo.php?id=<?php echo $id ?>">
+                <img src="<?php
+                          if ($values["item_img"]) {
+                            echo $values["item_img"];
+                          } else {
+                            echo "https://www.fml.com.mx/wp-content/uploads/2016/04/Race-Registration-Image-Not-Found.png";
+                          } ?>" alt="<?php echo $values["item_name"] ?>" title="<?php echo $values["item_name"] ?>" class="img">
+
+              </a>
+              <p>Producto: <?php echo $values["item_name"] ?></p>
+              <p>Precio: <?php echo $values["item_price"] ?></p>
+            </li>
+        <?php
+          }
+        }
+        ?>
+      </ul>
+
     </section>
   </main>
 </body>
