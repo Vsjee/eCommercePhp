@@ -29,6 +29,37 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 $discountValue = $result['P_PRICE'] * $result['P_DISCOUNT'] / 100;
 $discount = $result['P_PRICE'] - $discountValue;
 
+// cart actions
+if (isset($_POST["add_to_cart"])) {
+  if (isset($_SESSION["shopping_cart"])) {
+    $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
+    if (!in_array($_GET["id"], $item_array_id)) {
+      $count = count($_SESSION["shopping_cart"]);
+      $item_array = array(
+        'item_id'       => $_GET["id"],
+        'item_name'     => $_POST["hidden_name"],
+        'item_price'    => $_POST["hidden_price"],
+        'item_quantity' => $_POST["quantity"],
+        'item_img'      => $_POST["hidden_img"]
+      );
+      $_SESSION["shopping_cart"][$count] = $item_array;
+    } else {
+      echo '<script>alert("Item Already Added")</script>';
+      echo '<script>window.location="catalogue.php"</script>';
+    }
+  } else {
+    $item_array = array(
+      'item_id'       => $_GET["id"],
+      'item_name'     => $_POST["hidden_name"],
+      'item_price'    => $_POST["hidden_price"],
+      'item_quantity' => $_POST["quantity"],
+      'item_img'      => $_POST["hidden_img"]
+    );
+    $_SESSION["shopping_cart"][0] = $item_array;
+  }
+}
+
+
 mysqli_close($connection);
 ?>
 
@@ -91,7 +122,7 @@ mysqli_close($connection);
         </article>
       </article>
     </section>
-    <form method="post" action="./cart.php?action=add&id=<?php echo $result["P_ID"]; ?>">
+    <form method="post" action="./catalogue.php?action=add&id=<?php echo $result["P_ID"]; ?>">
       <article class="product">
         <article class="product__img">
           <picture>
@@ -116,6 +147,7 @@ mysqli_close($connection);
             <input type="number" name="quantity" class="form-control mt-4 mb-4" value="1" />
             <input type="hidden" name="hidden_name" value="<?php echo $result["P_NAME"]; ?>" />
             <input type="hidden" name="hidden_price" value="<?php echo $discount; ?>" />
+            <input type="hidden" name="hidden_img" value="<?php echo $result["P_URL"]; ?>" />
             <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
           </div>
         </article>

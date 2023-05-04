@@ -29,10 +29,11 @@ if (isset($_POST["add_to_cart"])) {
         if (!in_array($_GET["id"], $item_array_id)) {
             $count = count($_SESSION["shopping_cart"]);
             $item_array = array(
-                'item_id'               =>     $_GET["id"],
-                'item_name'               =>     $_POST["hidden_name"],
-                'item_price'          =>     $_POST["hidden_price"],
-                'item_quantity'          =>     $_POST["quantity"]
+                'item_id'       => $_GET["id"],
+                'item_name'     => $_POST["hidden_name"],
+                'item_price'    => $_POST["hidden_price"],
+                'item_quantity' => $_POST["quantity"],
+                'item_img'      => $_POST["hidden_img"]
             );
             $_SESSION["shopping_cart"][$count] = $item_array;
         } else {
@@ -41,10 +42,11 @@ if (isset($_POST["add_to_cart"])) {
         }
     } else {
         $item_array = array(
-            'item_id'               =>     $_GET["id"],
-            'item_name'               =>     $_POST["hidden_name"],
-            'item_price'          =>     $_POST["hidden_price"],
-            'item_quantity'          =>     $_POST["quantity"]
+            'item_id'       => $_GET["id"],
+            'item_name'     => $_POST["hidden_name"],
+            'item_price'    => $_POST["hidden_price"],
+            'item_quantity' => $_POST["quantity"],
+            'item_img'      => $_POST["hidden_img"]
         );
         $_SESSION["shopping_cart"][0] = $item_array;
     }
@@ -82,21 +84,21 @@ mysqli_close($connection);
                         <li class="nav-item"><a href="./registerProducts.php" class="nav-link active">Registrar Producto</a></li>
                     </ul>
                     <div>
-                        <a href="./cart.php" class="btn btn-warning">
-                            Carrito
-                            <span>
-                                <?php
-                                if (!empty($_SESSION["shopping_cart"])) {
-                                    echo count($_SESSION["shopping_cart"]);
-                                } else {
-                                    echo 0;
-                                }
-                                ?>
-                            </span>
-                        </a>
                         <?php
                         if (!empty($_SESSION["user"])) {
                         ?>
+                            <a href="./cart.php" class="btn btn-warning">
+                                Carrito
+                                <span>
+                                    <?php
+                                    if (!empty($_SESSION["shopping_cart"])) {
+                                        echo count($_SESSION["shopping_cart"]);
+                                    } else {
+                                        echo 0;
+                                    }
+                                    ?>
+                                </span>
+                            </a>
                             <a href="../pages/private/userProfile.php" class="btn btn-success">Profile</a>
                         <?php
                         } else {
@@ -137,7 +139,7 @@ mysqli_close($connection);
                     $discountValue = $value['P_PRICE'] * $value['P_DISCOUNT'] / 100;
                     $discount = $value['P_PRICE'] - $discountValue;
                 ?>
-                    <form method="post" action="cart.php?action=add&id=<?php echo $value["P_ID"]; ?>" data-aos="fade-up">
+                    <form method="post" action="catalogue.php?action=add&id=<?php echo $value["P_ID"]; ?>" data-aos="fade-up">
                         <div style="background-color:#f1f1f1; border-radius:5px;" class="card shadow-sm overflow-hidden" style="height: 800px;">
                             <img src="<?php
                                         if ($value["P_URL"]) {
@@ -159,6 +161,7 @@ mysqli_close($connection);
                                 <input type="text" name="quantity" class="form-control mt-4" value="1" />
                                 <input type="hidden" name="hidden_name" value="<?php echo $value["P_NAME"]; ?>" />
                                 <input type="hidden" name="hidden_price" value="<?php echo $discount; ?>" />
+                                <input type="hidden" name="hidden_img" value="<?php echo $value["P_URL"]; ?>" />
                                 <article>
                                     <article class="d-flex justify-content-between align-items-center mt-3">
                                         <a href="./productInfo.php?id=<?php echo $id ?>" class="btn btn-error">
