@@ -12,7 +12,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
   if (!empty($id_decrypted)) {
     //fetch curr product
-    $item_query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION, P_DISCOUNT, P_CATEGORY FROM products WHERE P_ID = '$id_decrypted'";
+    $item_query = "SELECT P_ID, P_NAME, P_PRICE, P_AVAILABILITY, P_URL, P_DESCRIPTION, P_DISCOUNT, P_CATEGORY, P_BUY_NOW FROM products WHERE P_ID = '$id_decrypted'";
     $item = mysqli_query($connection, $item_query);
     $result = mysqli_fetch_array($item);
 
@@ -148,7 +148,14 @@ mysqli_close($connection);
             <input type="hidden" name="hidden_name" value="<?php echo $result["P_NAME"]; ?>" />
             <input type="hidden" name="hidden_price" value="<?php echo $discount; ?>" />
             <input type="hidden" name="hidden_img" value="<?php echo $result["P_URL"]; ?>" />
-            <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
+            <div class="d-flex justify-content-between align-items-center">
+              <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Añadir al carrito" />
+              <button class="btn btn-primary">
+                <a href="<?php echo $result["P_BUY_NOW"]; ?>" class="text-decoration-none link-light">
+                  Compra inmediata
+                </a>
+              </button>
+            </div>
           </div>
         </article>
       </article>
