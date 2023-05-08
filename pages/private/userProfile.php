@@ -1,14 +1,31 @@
 <?php
 include '../../php/config.php';
+include '../../php/connection.php';
 
 session_start();
+
+$isAdmin = false;
 
 if (empty($_SESSION["user"])) {
   header("Location: ../../auth/login.php");
   exit();
 } else {
   echo '<script>console.log("Soy un mensaje secreto, estamos en tu perfil.")</script>';
+  $userName = $_SESSION["user"];
+  $userQuery = "SELECT U_NAME, P_TYPE FROM `users` WHERE U_NAME = '$userName'";
+  $result = mysqli_query($connection, $userQuery);
+  $result = mysqli_fetch_array($result);
+
+  if ($result["P_TYPE"] == "admin") {
+    $isAdmin = true;
+    $usersListQuery = "SELECT U_ID, U_NAME, U_EMAIL, U_PASSWORD, P_TYPE FROM `users`";
+    $usersListResult = mysqli_query($connection, $usersListQuery);
+  } else {
+    $isAdmin = false;
+  }
 }
+
+mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
@@ -84,37 +101,84 @@ if (empty($_SESSION["user"])) {
 
   <main>
     <section class="container mt-5 d-flex flex-column gap-5 align-items-center justify-content-evenly">
-      <h4>Bienvenid@ otra vez <?php echo $_SESSION["user"] ?></h4>
+      <?php 
+        if ($isAdmin) {
+      ?>
+        <h4>Bienvenid@ otra vez Admin <?php echo $_SESSION["user"] ?></h4>
+      <?php 
+        } else {
+      ?>
+        <h4>Bienvenid@ otra vez <?php echo $_SESSION["user"] ?></h4>
+      <?php 
+        }
+      ?>
     </section>
 
     <section class="mt-5">
-      <h5 class="list__text--before">Listado productos que tienes en tu carrito</h5>
-      <ul class="list">
-        <?php
-        if (!empty($_SESSION["shopping_cart"])) {
-          $total = 0;
-          foreach ($_SESSION["shopping_cart"] as $keys => $values) {
-            $id = encryptor("encrypt", $values["item_id"]);
-        ?>
-            <li>
-              <a href="../productInfo.php?id=<?php echo $id ?>">
-                <img src="<?php
-                          if ($values["item_img"]) {
-                            echo $values["item_img"];
-                          } else {
-                            echo "https://www.fml.com.mx/wp-content/uploads/2016/04/Race-Registration-Image-Not-Found.png";
-                          } ?>" alt="<?php echo $values["item_name"] ?>" title="<?php echo $values["item_name"] ?>" class="img">
+    <?php 
+        if ($isAdmin) {
+      ?>
+        <!-- ADMIN RENDER -->
+        <h4 class="list__text--before"  >Lista de usuarios existenten en la app</h4>
+        <table class="table-responsive m-5">
+          <thead>
+            <th class="w-50">user name</th>
+            <th class="w-50">user email</th>
+            <th class="w-25">delete</th>
+          </thead>
+          <?php 
+            foreach ($usersListResult as $key => $value) {
+          ?>
+            <tbody>
+              <td>
+                <?php echo $value["U_NAME"]; ?>
+              </td>
+              <td>
+                <?php echo $value["U_EMAIL"]; ?>
+              </td>
+              <td>
+                <button class="btn btn-danger">Delete</button>
+              </td>
+            </tbody>
+          <?php 
+            }
+          ?>
+        </table>
+        <h4 class="list__text--before">Ver graficas</h4>
+        <a href="" class="list__text--before">Graficas</a>
+      <?php 
+        } else {
+      ?>
+        <!-- USER RENDER -->
+        <h5 class="list__text--before">Listado productos que tienes en tu carrito</h5>
+        <ul class="list">
+          <?php
+          if (!empty($_SESSION["shopping_cart"])) {
+            $total = 0;
+            foreach ($_SESSION["shopping_cart"] as $keys => $values) {
+              $id = encryptor("encrypt", $values["item_id"]);
+          ?>
+              <li>
+                <a href="../productInfo.php?id=<?php echo $id ?>">
+                  <img src="<?php
+                            if ($values["item_img"]) {
+                              echo $values["item_img"];
+                            } else {
+                              echo "https://www.fml.com.mx/wp-content/uploads/2016/04/Race-Registration-Image-Not-Found.png";
+                            } ?>" alt="<?php echo $values["item_name"] ?>" title="<?php echo $values["item_name"] ?>" class="img">
 
-              </a>
-              <p>Producto: <?php echo $values["item_name"] ?></p>
-              <p>Precio: <?php echo $values["item_price"] ?></p>
-            </li>
-        <?php
+                </a>
+                <p>Producto: <?php echo $values["item_name"] ?></p>
+                <p>Precio: <?php echo $values["item_price"] ?></p>
+              </li>
+          <?php
+            }
           }
+          ?>
+        </ul>
+      <?php 
         }
-        ?>
-      </ul>
-
+      ?> 
     </section>
   </main>
 </body>
