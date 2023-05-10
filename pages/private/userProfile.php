@@ -101,33 +101,33 @@ mysqli_close($connection);
 
   <main>
     <section class="container mt-5 d-flex flex-column gap-5 align-items-center justify-content-evenly">
-      <?php 
-        if ($isAdmin) {
+      <?php
+      if ($isAdmin) {
       ?>
         <h4>Bienvenid@ otra vez Admin <?php echo $_SESSION["user"] ?></h4>
-      <?php 
-        } else {
+      <?php
+      } else {
       ?>
         <h4>Bienvenid@ otra vez <?php echo $_SESSION["user"] ?></h4>
-      <?php 
-        }
+      <?php
+      }
       ?>
     </section>
 
     <section class="mt-5">
-    <?php 
-        if ($isAdmin) {
+      <?php
+      if ($isAdmin) {
       ?>
         <!-- ADMIN RENDER -->
-        <h4 class="list__text--before"  >Lista de usuarios existenten en la app</h4>
+        <h4 class="list__text--before">Lista de usuarios existenten en la app</h4>
         <table class="table-responsive m-5">
           <thead>
             <th class="w-50">user name</th>
             <th class="w-50">user email</th>
             <th class="w-25">delete</th>
           </thead>
-          <?php 
-            foreach ($usersListResult as $key => $value) {
+          <?php
+          foreach ($usersListResult as $key => $value) {
           ?>
             <tbody>
               <td>
@@ -140,14 +140,15 @@ mysqli_close($connection);
                 <button class="btn btn-danger">Delete</button>
               </td>
             </tbody>
-          <?php 
-            }
+          <?php
+          }
           ?>
         </table>
         <h4 class="list__text--before">Ver graficas</h4>
         <a href="" class="list__text--before">Graficas</a>
-      <?php 
-        } else {
+        <a href="./chatbot/chatbot.php" class="list__text--before">Obtener ayuda</a>
+      <?php
+      } else {
       ?>
         <!-- USER RENDER -->
         <h5 class="list__text--before">Listado productos que tienes en tu carrito</h5>
@@ -176,9 +177,9 @@ mysqli_close($connection);
           }
           ?>
         </ul>
-      <?php 
-        }
-      ?> 
+      <?php
+      }
+      ?>
     </section>
   </main>
 </body>
