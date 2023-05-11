@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2023 at 02:19 AM
+-- Generation Time: May 11, 2023 at 03:13 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -20,6 +20,34 @@ SET time_zone = "+00:00";
 --
 -- Database: `store`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `autochat`
+--
+
+CREATE TABLE `autochat` (
+  `id` int(11) NOT NULL,
+  `replies` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `queries` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Dumping data for table `autochat`
+--
+
+INSERT INTO `autochat` (`id`, `replies`, `queries`) VALUES
+(1, 'Hola, mucho gusto soy botyuda =D', 'Hola'),
+(3, 'Esto es en lo que te puedo ayudar,\n                                                           1. Dudas sobre la compra\n                                                           2. Como eliminar cuenta de usuario\n                                                           3. Tiempo en que llega mi pedido?\n                                                           4. Cual es el limite de productos por compra?', 'Ayuda'),
+(4, 'Estas son algunas dudas frecuentes sobre la compra, 1C. Hacen envios a las afueras de bogota?\r\n                                                           2C. Puedo hacer una devoulción?\r\n                                                           3C. Metodos de pago\r\n                                                           4C. Es seguro comprar?\r\n                                                           \r\n                                                          ', '1'),
+(5, 'Para eliminar tu cuenta, por el momento no contamos con esa funcion, pero si puedes enviarnos un correo a techstore@techstore.com.co y te hariamos la eliminacion del sistema', '2'),
+(6, 'De 3 a 7 dias habiles y si es un envio fuera de bogota seria de 7 a 15 dias habiles', '3'),
+(7, 'El limite maximo es de 10 unidades por usuarios de cada producto', '4'),
+(8, 'Por supuesto, a todos los rincones del pais, animate y compra!', '1C'),
+(9, 'Tienes maximo 15 dias desde el dia de la compra , ten encuenta el producto tiene que estar en perfecto estado de caso contrario no sera aceptada!', '2C'),
+(10, 'Manejamos, tarjetas de credito, PSE, mercado pago y efecty =D', '3C'),
+(11, 'No tienes que preocuparte ya que el sistema que utilizamos ser llama \"mercado pago\" lider a nivel mundial de pagos en linea!', '4C');
 
 -- --------------------------------------------------------
 
@@ -83,6 +111,12 @@ INSERT INTO `users` (`U_ID`, `U_NAME`, `U_EMAIL`, `U_PASSWORD`, `P_TYPE`) VALUES
 --
 
 --
+-- Indexes for table `autochat`
+--
+ALTER TABLE `autochat`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -97,6 +131,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `autochat`
+--
+ALTER TABLE `autochat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `products`
