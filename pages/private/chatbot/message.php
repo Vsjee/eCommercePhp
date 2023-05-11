@@ -19,5 +19,5 @@ if (mysqli_num_rows($runQuery) > 0) {
 
   echo $reply;
 } else {
-  echo "Sorry i can't understand, what do you mean?";
+  echo 'Lo siento, no entendi, intenta de nuevo escribiendo "Ayuda" =D';
 }
