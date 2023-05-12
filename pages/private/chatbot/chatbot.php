@@ -15,6 +15,7 @@ session_start();
   <!-- bootstrap cdn -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="../../../global.css">
 </head>
 
 <body>
@@ -26,7 +27,7 @@ session_start();
           <img src="../../../assets/images/bot.png" alt="bot image">
           <span class="chatbot-user">Botyuda</span>
         </div>
-        <a href="../userProfile.php" class="text-decoration-none">Volver</a>
+        <a href="../userProfile.php" class="text-decoration-none link-warning text-info">Volver</a>
       </header>
       <main>
         <div class="ai-chatbot">
@@ -38,7 +39,7 @@ session_start();
                   echo $_SESSION["user"];
                 }
                 ?>
-              </span> que tal? en que te puedo ayudar? =D
+              </span> que tal? en que te puedo ayudar? 🤖✨
             </p>
             <small class="botDate"></small>
           </div>
