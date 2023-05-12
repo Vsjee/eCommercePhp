@@ -14,6 +14,7 @@ if (empty($_SESSION["user"])) {
   $userName = $_SESSION["user"];
   $userQuery = "SELECT U_NAME, P_TYPE FROM `users` WHERE U_NAME = '$userName'";
   $result = mysqli_query($connection, $userQuery);
+  $resulNumRows = mysqli_num_rows($result);
   $result = mysqli_fetch_array($result);
 
   if ($result["P_TYPE"] == "admin") {
@@ -120,33 +121,47 @@ mysqli_close($connection);
       ?>
         <!-- ADMIN RENDER -->
         <h4 class="list__text--before">Lista de usuarios existenten en la app</h4>
-        <table class="table-responsive m-5">
-          <thead>
-            <th class="w-50">user name</th>
-            <th class="w-50">user email</th>
-            <th class="w-25">delete</th>
-          </thead>
-          <?php
-          foreach ($usersListResult as $key => $value) {
-          ?>
-            <tbody>
-              <td>
-                <?php echo $value["U_NAME"]; ?>
-              </td>
-              <td>
-                <?php echo $value["U_EMAIL"]; ?>
-              </td>
-              <td>
-                <button class="btn btn-danger">Delete</button>
-              </td>
-            </tbody>
-          <?php
-          }
-          ?>
-        </table>
+        <?php
+        if ($resulNumRows > 0) {
+        ?>
+          <!-- ADMIN RENDER IF EXISTS USERS IN THE DB -->
+          <table class="table-responsive m-5">
+            <thead>
+              <th class="w-50">Nombre</th>
+              <th class="w-50">Correo</th>
+              <th class="w-25">Acción</th>
+            </thead>
+            <?php
+            foreach ($usersListResult as $key => $value) {
+            ?>
+              <form method="post" action="../../utils/deleteUser.php">
+                <tbody>
+                  <td>
+                    <?php echo $value["U_NAME"]; ?>
+                  </td>
+                  <td>
+                    <?php echo $value["U_EMAIL"]; ?>
+                  </td>
+                  <td>
+                    <input type="hidden" name="UserId" value="<?php echo $value['U_ID']; ?>">
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                  </td>
+                </tbody>
+              </form>
+            <?php
+            }
+            ?>
+          </table>
+        <?php
+        } else {
+        ?>
+          <!-- ADMIN RENDER IF NOT EXISTS USER IN THE DB -->
+          <h3 class="ist__text--before">No existen ususarios en la DB.</h3>
+        <?php
+        }
+        ?>
         <h4 class="list__text--before">Ver graficas</h4>
-        <a href="" class="list__text--before">Graficas</a>
-        <a href="./chatbot/chatbot.php" class="list__text--before">Obtener ayuda</a>
+        <a href="./graphics/graphics.php" class="list__text--before">Graficas</a>
       <?php
       } else {
       ?>
@@ -177,6 +192,8 @@ mysqli_close($connection);
           }
           ?>
         </ul>
+        <h4 class="list__text--before">Asistente virtual Botyuda</h4>
+        <a href="./chatbot/chatbot.php" class="list__text--before">Obtener ayuda</a>
       <?php
       }
       ?>
