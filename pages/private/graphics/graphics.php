@@ -73,12 +73,6 @@ mysqli_close($connection);
 <!-- barras -->
 <script type="text/javascript">
   const products = <?php echo json_encode($products) ?>; //array of arrays [[]]
-  let ElectronicProducts = _getAveragePricePerCategory(products, 2, 'electronic', 7);
-  let MobileProducts = _getAveragePricePerCategory(products, 2, 'mobile', 7);
-  let ComputerProducts = _getAveragePricePerCategory(products, 2, 'computer', 7);
-  let HeardphoneProducts = _getAveragePricePerCategory(products, 2, 'hearphones', 7);
-  let HardwareProducts = _getAveragePricePerCategory(products, 2, 'hardware', 7);
-  let ToyProducts = _getAveragePricePerCategory(products, 2, 'toy', 7);
 
   function _getAveragePricePerCategory(product, priceIndex, category, categoryIndex) {
     let result = 0;
@@ -161,22 +155,22 @@ mysqli_close($connection);
     },
     series: [{
       name: 'Electronicos',
-      data: [ElectronicProducts]
+      data: [_getAveragePricePerCategory(products, 2, 'electronic', 7)]
     }, {
       name: 'Computadores',
-      data: [ComputerProducts]
+      data: [_getAveragePricePerCategory(products, 2, 'computer', 7)]
     }, {
       name: 'Mobiles',
-      data: [MobileProducts]
+      data: [_getAveragePricePerCategory(products, 2, 'mobile', 7)]
     }, {
       name: 'Hardware',
-      data: [HardwareProducts]
+      data: [_getAveragePricePerCategory(products, 2, 'hardware', 7)]
     }, {
       name: 'Audifonos',
-      data: [HeardphoneProducts]
+      data: [_getAveragePricePerCategory(products, 2, 'hearphones', 7)]
     }, {
       name: 'Juguetes',
-      data: [ToyProducts]
+      data: [_getAveragePricePerCategory(products, 2, 'toy', 7)]
     }]
   });
 
