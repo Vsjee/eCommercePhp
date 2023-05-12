@@ -40,6 +40,7 @@ mysqli_close($connection);
 
   <!-- bootstrap cdn -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../global.css">
   <style>
     .list__text--before {
       margin-left: 5%;
@@ -67,9 +68,9 @@ mysqli_close($connection);
 
 <body>
   <header>
-    <section class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <section class="navbar navbar-expand-lg  navbar-light bg-light position-fixed w-100 top-0 nav">
       <article class="container">
-        <a href="../../index.php" class="navbar-brad link-warning">
+        <a href="../../index.php" class="navbar-brad link-warning text-decoration-none text-info" style="transition: .3s ease-in-out;">
           <strong>Tech Store</strong>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,23 +78,37 @@ mysqli_close($connection);
         </button>
         <article class="collapse navbar-collapse" id="navbarHeader">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a href="../../pages/catalogue.php" class="nav-link active">Catalogo</a></li>
-            <li class="nav-item"><a href="../../pages/registerProducts.php" class="nav-link active">Registrar Producto</a></li>
+            <li class="nav-item"><a href="../catalogue.php" class="nav-link active link-info text-dark">Catalogo</a></li>
+            <?php
+            if ($isAdmin) {
+            ?>
+              <li class="nav-item"><a href="../registerProducts.php" class="nav-link active link-info text-dark">Registrar Producto</a></li>
+            <?php } ?>
           </ul>
-          <div class="cart_div">
-            <a href="../../pages/cart.php" class="btn btn-warning">
-              Carrito
-              <span>
-                <?php
-                if (!empty($_SESSION["shopping_cart"])) {
-                  echo count($_SESSION["shopping_cart"]);
-                } else {
-                  echo 0;
-                }
-                ?>
-              </span>
-            </a>
-            <a href="../../auth/logout.php" class="btn btn-primary">Logout</a>
+          <div>
+            <?php
+            if (!empty($_SESSION["user"])) {
+            ?>
+              <a href="../cart.php" class="btn btn-warning text-light">
+                Carrito
+                <span>
+                  <?php
+                  if (!empty($_SESSION["shopping_cart"])) {
+                    echo count($_SESSION["shopping_cart"]);
+                  } else {
+                    echo 0;
+                  }
+                  ?>
+                </span>
+              </a>
+              <a href="../../auth/logout.php" class="btn btn-info text-light">Logout</a>
+            <?php
+            } else {
+            ?>
+              <a href="../auth/login/login.php" class="btn btn-info text-light">Login</a>
+            <?php
+            }
+            ?>
           </div>
         </article>
       </article>
@@ -101,21 +116,27 @@ mysqli_close($connection);
   </header>
 
   <main>
-    <section class="container mt-5 d-flex flex-column gap-5 align-items-center justify-content-evenly">
+    <section class="container mt-5 pt-5 d-flex flex-column gap-5 align-items-center justify-content-evenly">
       <?php
       if ($isAdmin) {
       ?>
-        <h4>Bienvenid@ otra vez Admin <?php echo $_SESSION["user"] ?></h4>
+        <h4>Bienvenid@ otra vez
+          <span class="text-info">admin <?php echo $_SESSION["user"] ?></span>
+        </h4>
       <?php
       } else {
       ?>
-        <h4>Bienvenid@ otra vez <?php echo $_SESSION["user"] ?></h4>
+        <h4>Bienvenid@ otra vez
+          <span class="text-info">
+            <?php echo $_SESSION["user"] ?>
+          </span>
+        </h4>
       <?php
       }
       ?>
     </section>
 
-    <section class="mt-5">
+    <section class="mt-5 mb-5">
       <?php
       if ($isAdmin) {
       ?>
@@ -161,7 +182,7 @@ mysqli_close($connection);
         }
         ?>
         <h4 class="list__text--before">Ver graficas</h4>
-        <a href="./graphics/graphics.php" class="list__text--before">Graficas</a>
+        <a href="./graphics/graphics.php" class="list__text--before text-decoration-none text-info link-warning">Graficas</a>
       <?php
       } else {
       ?>
@@ -193,7 +214,7 @@ mysqli_close($connection);
           ?>
         </ul>
         <h4 class="list__text--before">Asistente virtual Botyuda</h4>
-        <a href="./chatbot/chatbot.php" class="list__text--before">Obtener ayuda</a>
+        <a href="./chatbot/chatbot.php" class="list__text--before text-decoration-none text-info link-warning">Obtener ayuda</a>
       <?php
       }
       ?>

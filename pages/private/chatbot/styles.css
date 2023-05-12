@@ -44,12 +44,12 @@ header div img,
   font-weight: bolder;
   margin: 0 5px;
   font-size: 20px;
-  color: darkslategray;
+  color: #fff;
 }
 
 main {
   height: 400px;
-  border-top: 2px solid #ccc;
+  border-top: 2px solid #fff;
   overflow-x: hidden;
   overflow-y: scroll;
   width: 100%;
@@ -84,7 +84,7 @@ main::-webkit-scrollbar-thumb {
 .message > p {
   padding: 12px 12px;
   border-radius: 50px;
-  background: #e8e8e8;
+  background: white;
   font-weight: bold;
 }
 
@@ -97,7 +97,7 @@ main::-webkit-scrollbar-thumb {
   padding: 12px 12px;
   border-radius: 50px;
   background: #755fde;
-  color: whitesmoke;
+  color: white;
 }
 
 .user-mes > .message > .time {
@@ -120,13 +120,8 @@ form {
 input[type='text'] {
   padding: 10px 20px;
   width: 80%;
-  border: 1px solid #ccc;
   border-radius: 20px;
   outline: none;
-}
-
-input[type='text']:focus {
-  border-color: magenta;
 }
 
 button {

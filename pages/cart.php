@@ -61,13 +61,14 @@ if (isset($_GET["action"])) {
       height: 150px;
     }
   </style>
+  <link rel="stylesheet" href="../global.css">
 </head>
 
 <body>
   <header>
-    <section class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <section class="navbar navbar-expand-lg  navbar-light bg-light position-fixed w-100 top-0 nav">
       <article class="container">
-        <a href="../index.php" class="navbar-brad link-warning">
+        <a href="../index.php" class="navbar-brad link-warning text-decoration-none text-info">
           <strong>Tech Store</strong>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,30 +76,29 @@ if (isset($_GET["action"])) {
         </button>
         <article class="collapse navbar-collapse" id="navbarHeader">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a href="./catalogue.php" class="nav-link active">Catalogo</a></li>
-            <li class="nav-item"><a href="./registerProducts.php" class="nav-link active">Registrar Producto</a></li>
+            <li class="nav-item"><a href="./catalogue.php" class="nav-link active link-info text-dark">Catalogo</a></li>
           </ul>
           <div>
-            <a href="./cart.php" class="btn btn-warning">
-              Carrito
-              <span>
-                <?php
-                if (!empty($_SESSION["shopping_cart"])) {
-                  echo count($_SESSION["shopping_cart"]);
-                } else {
-                  echo 0;
-                }
-                ?>
-              </span>
-            </a>
             <?php
             if (!empty($_SESSION["user"])) {
             ?>
-              <a href="../pages/private/userProfile.php" class="btn btn-success">Profile</a>
+              <a href="./cart.php" class="btn btn-warning text-light">
+                Carrito
+                <span>
+                  <?php
+                  if (!empty($_SESSION["shopping_cart"])) {
+                    echo count($_SESSION["shopping_cart"]);
+                  } else {
+                    echo 0;
+                  }
+                  ?>
+                </span>
+              </a>
+              <a href="../pages/private/userProfile.php" class="btn btn-info text-light">Profile</a>
             <?php
             } else {
             ?>
-              <a href="../auth/login/login.php" class="btn btn-primary">Login</a>
+              <a href="../auth/login/login.php" class="btn btn-info text-light">Login</a>
             <?php
             }
             ?>
@@ -107,18 +107,19 @@ if (isset($_GET["action"])) {
       </article>
     </section>
   </header>
+
   <div style="clear:both"></div>
   <br />
   <h3>Detalles orden</h3>
-  <div class="table-responsive">
-    <table class="table table-bordered">
+  <div class="table-responsive mt-5 pt-4 mb-5">
+    <table class="table table-bordered container">
       <tr>
-        <th width="10%">product</th>
-        <th width="10%">Item Name</th>
-        <th width="10%">Quantity</th>
-        <th width="10%">Price</th>
+        <th width="10%">Producto</th>
+        <th width="10%">Nombre</th>
+        <th width="10%">Cantidad</th>
+        <th width="10%">Precio</th>
         <th width="15%">Total</th>
-        <th width="5%">Action</th>
+        <th width="5%">Acción</th>
       </tr>
       <?php
       if (!empty($_SESSION["shopping_cart"])) {
@@ -138,14 +139,14 @@ if (isset($_GET["action"])) {
             </td>
             </a>
             <td>
-              <a href="./productInfo.php?id=<?php echo $id ?>">
+              <a href="./productInfo.php?id=<?php echo $id ?>" class="text-decoration-none link-primary text-info">
                 <?php echo $values["item_name"]; ?>
               </a>
             </td>
             <td><?php echo $values["item_quantity"]; ?></td>
             <td>$ <?php echo $values["item_price"]; ?></td>
             <td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?></td>
-            <td><a href="cart.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="text-danger">Remove</span></a></td>
+            <td><a href="cart.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span class="btn btn-danger text-light">Eliminar</span></a></td>
           </tr>
         <?php
           $total = $total + ($values["item_quantity"] * $values["item_price"]);

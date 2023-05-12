@@ -77,13 +77,14 @@ mysqli_close($connection);
   <link rel="stylesheet" href="../styles/productInfo.css">
 
   <link rel="stylesheet" type="text/css" href="../glider/glider.css">
+  <link rel="stylesheet" href="../global.css">
 </head>
 
 <body>
   <header>
-    <section class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <section class="navbar navbar-expand-lg  navbar-light bg-light position-fixed w-100 top-0 nav">
       <article class="container">
-        <a href="../index.php" class="navbar-brad link-warning">
+        <a href="../index.php" class="navbar-brad link-warning text-decoration-none text-info">
           <strong>Tech Store</strong>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,14 +92,13 @@ mysqli_close($connection);
         </button>
         <article class="collapse navbar-collapse" id="navbarHeader">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a href="./catalogue.php" class="nav-link active">Catalogo</a></li>
-            <li class="nav-item"><a href="./registerProducts.php" class="nav-link active">Registrar Producto</a></li>
+            <li class="nav-item"><a href="./catalogue.php" class="nav-link active link-info text-dark">Catalogo</a></li>
           </ul>
           <div>
             <?php
             if (!empty($_SESSION["user"])) {
             ?>
-              <a href="./cart.php" class="btn btn-warning">
+              <a href="./cart.php" class="btn btn-warning text-light">
                 Carrito
                 <span>
                   <?php
@@ -110,11 +110,11 @@ mysqli_close($connection);
                   ?>
                 </span>
               </a>
-              <a href="../pages/private/userProfile.php" class="btn btn-success">Profile</a>
+              <a href="../pages/private/userProfile.php" class="btn btn-info text-light">Profile</a>
             <?php
             } else {
             ?>
-              <a href="../auth/login/login.php" class="btn btn-primary">Login</a>
+              <a href="../auth/login/login.php" class="btn btn-info text-light">Login</a>
             <?php
             }
             ?>
@@ -122,6 +122,10 @@ mysqli_close($connection);
         </article>
       </article>
     </section>
+  </header>
+
+  <section class="mt-5 pt-5">
+
     <form method="post" action="./catalogue.php?action=add&id=<?php echo $result["P_ID"]; ?>">
       <article class="product">
         <article class="product__img">
@@ -150,7 +154,7 @@ mysqli_close($connection);
             <input type="hidden" name="hidden_img" value="<?php echo $result["P_URL"]; ?>" />
             <div class="d-flex justify-content-between align-items-center">
               <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Añadir al carrito" />
-              <button class="btn btn-primary">
+              <button class="btn btn-primary" style="height: 50px;">
                 <a href="<?php echo $result["P_BUY_NOW"]; ?>" class="text-decoration-none link-light">
                   Compra inmediata
                 </a>
@@ -171,41 +175,42 @@ mysqli_close($connection);
           </p>
         </article>
     </form>
-    </section>
-    <section class="container mt-5 mb-5 pt-5 pb-5">
-      <h3 class="mb-5 text-center">Productos relacionados</h3>
-      <div class="glider-contain">
-        <div class="glider carouse">
-          <?php
-          foreach ($related_products as $key => $value) {
-            $id = encryptor('encrypt', $value['P_ID']);
-          ?>
-            <div class="carousel__item">
-              <a class="prod" href="./productInfo.php?id=<?php echo $id ?>">
-                <h5><?php echo $value['P_NAME'] ?></h5>
-                <img src="<?php
-                          if ($value["P_URL"]) {
-                            echo $value["P_URL"];
-                          } else {
-                            echo "https://www.fml.com.mx/wp-content/uploads/2016/04/Race-Registration-Image-Not-Found.png";
-                          } ?>" alt="<?php echo $value['P_NAME'] ?>" title="<?php echo $value['P_NAME'] ?>" class="item__img">
-              </a>
-            </div>
-          <?php
-          }
-          ?>
-        </div>
-        <?php if ($num_rows == 0) : ?>
-          <h5 class="text-center">No exisiten productos relacionados por el momento.</h5>
-        <?php endif ?>
-        <button aria-label="Previous" class="glider-prev">«</button>
-        <button aria-label="Next" class="glider-next">»</button>
-        <div role="tablist" class="dots"></div>
+  </section>
+  </section>
+  <section class="container mt-5 mb-5 pt-5 pb-5">
+    <h3 class="mb-5 text-center">Productos relacionados</h3>
+    <div class="glider-contain">
+      <div class="glider carouse">
+        <?php
+        foreach ($related_products as $key => $value) {
+          $id = encryptor('encrypt', $value['P_ID']);
+        ?>
+          <div class="carousel__item">
+            <a class="prod" href="./productInfo.php?id=<?php echo $id ?>">
+              <h5 class="prod__item"><?php echo $value['P_NAME'] ?></h5>
+              <img src="<?php
+                        if ($value["P_URL"]) {
+                          echo $value["P_URL"];
+                        } else {
+                          echo "https://www.fml.com.mx/wp-content/uploads/2016/04/Race-Registration-Image-Not-Found.png";
+                        } ?>" alt="<?php echo $value['P_NAME'] ?>" title="<?php echo $value['P_NAME'] ?>" class="item__img">
+            </a>
+          </div>
+        <?php
+        }
+        ?>
       </div>
-    </section>
-    </main>
-    <script src="../glider/glider.js"></script>
-    <script src="../js/gliderInit.js"></script>
+      <?php if ($num_rows == 0) : ?>
+        <h5 class="text-center">No exisiten productos relacionados por el momento.</h5>
+      <?php endif ?>
+      <button aria-label="Previous" class="glider-prev">«</button>
+      <button aria-label="Next" class="glider-next">»</button>
+      <div role="tablist" class="dots"></div>
+    </div>
+  </section>
+  </main>
+  <script src="../glider/glider.js"></script>
+  <script src="../js/gliderInit.js"></script>
 </body>
 
 </html>

@@ -23,15 +23,15 @@ mysqli_close($connection);
 
     <!-- bootstrap cdn -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
     <link rel="stylesheet" type="text/css" href="./glider/glider.css">
+    <link rel="stylesheet" href="./global.css">
 </head>
 
 <body>
     <header>
-        <section class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <section class="navbar navbar-expand-lg  navbar-light bg-light position-fixed w-100 top-0 nav">
             <article class="container">
-                <a href="./index.php" class="navbar-brad link-warning">
+                <a href="./index.php" class="navbar-brad link-warning text-decoration-none text-info">
                     <strong>Tech Store</strong>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,14 +39,13 @@ mysqli_close($connection);
                 </button>
                 <article class="collapse navbar-collapse" id="navbarHeader">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a href="./pages/catalogue.php" class="nav-link active">Catalogo</a></li>
-                        <li class="nav-item"><a href="./pages/registerProducts.php" class="nav-link active">Registrar Producto</a></li>
+                        <li class="nav-item"><a href="./pages/catalogue.php" class="nav-link active link-info text-dark">Catalogo</a></li>
                     </ul>
                     <div>
                         <?php
                         if (!empty($_SESSION["user"])) {
                         ?>
-                            <a href="./pages/cart.php" class="btn btn-warning">
+                            <a href="./pages/cart.php" class="btn btn-warning text-light">
                                 Carrito
                                 <span>
                                     <?php
@@ -58,11 +57,11 @@ mysqli_close($connection);
                                     ?>
                                 </span>
                             </a>
-                            <a href="./pages/private/userProfile.php" class="btn btn-success">Profile</a>
+                            <a href="./pages/private/userProfile.php" class="btn btn-info text-light">Profile</a>
                         <?php
                         } else {
                         ?>
-                            <a href="./auth/login/login.php" class="btn btn-primary">Login</a>
+                            <a href="./auth/login/login.php" class="btn btn-info text-light">Login</a>
                         <?php
                         }
                         ?>
@@ -73,13 +72,13 @@ mysqli_close($connection);
     </header>
 
     <main>
-        <section class="container mt-5">
+        <section class="container mt-5 pt-5">
             <h1>Bienvenido a Tech store</h1>
             <p>Aqui encontraras todo tipo de productos electronicos, y de ultima generación con los mejores precios de toda colombia y el mundo! animate y busca tus productos favoritos.</p>
         </section>
         <section class="container mt-5">
             <h4 class="pt-5">Productos destacados del dia</h4>
-            <div class="glider-contain">
+            <div class="glider-contain pt-3">
                 <div class="glider carouse">
                     <?php
                     foreach ($feature_products as $key => $value) {
@@ -88,7 +87,7 @@ mysqli_close($connection);
                         <!-- here the feature prod -->
                         <div class="carousel__item">
                             <a class="prod" href="./pages/productInfo.php?id=<?php echo $id ?>">
-                                <h5><?php echo $value['P_NAME'] ?></h5>
+                                <h5 class="prod__item"><?php echo $value['P_NAME'] ?></h5>
                                 <img src="<?php
                                             if ($value["P_URL"]) {
                                                 echo $value["P_URL"];

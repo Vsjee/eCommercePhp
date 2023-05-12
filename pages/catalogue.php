@@ -66,13 +66,14 @@ mysqli_close($connection);
 
     <!-- bootstrap cdn -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="../global.css">
 </head>
 
 <body>
     <header>
-        <section class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <section class="navbar navbar-expand-lg  navbar-light bg-light position-fixed w-100 top-0 nav">
             <article class="container">
-                <a href="../index.php" class="navbar-brad link-warning">
+                <a href="../index.php" class="navbar-brad link-warning text-decoration-none text-info">
                     <strong>Tech Store</strong>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,14 +81,13 @@ mysqli_close($connection);
                 </button>
                 <article class="collapse navbar-collapse" id="navbarHeader">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a href="#" class="nav-link active">Catalogo</a></li>
-                        <li class="nav-item"><a href="./registerProducts.php" class="nav-link active">Registrar Producto</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link active link-info text-dark">Catalogo</a></li>
                     </ul>
                     <div>
                         <?php
                         if (!empty($_SESSION["user"])) {
                         ?>
-                            <a href="./cart.php" class="btn btn-warning">
+                            <a href="./cart.php" class="btn btn-warning text-light">
                                 Carrito
                                 <span>
                                     <?php
@@ -99,11 +99,11 @@ mysqli_close($connection);
                                     ?>
                                 </span>
                             </a>
-                            <a href="../pages/private/userProfile.php" class="btn btn-success">Profile</a>
+                            <a href="../pages/private/userProfile.php" class="btn btn-info text-light">Profile</a>
                         <?php
                         } else {
                         ?>
-                            <a href="../auth/login/login.php" class="btn btn-primary">Login</a>
+                            <a href="../auth/login/login.php" class="btn btn-info text-light">Login</a>
                         <?php
                         }
                         ?>
@@ -114,10 +114,10 @@ mysqli_close($connection);
     </header>
 
     <main>
-        <section class="container mt-5 d-flex gap-5 align-items-center justify-content-evenly">
+        <section class="container mt-5 pt-5 d-flex gap-5 align-items-center justify-content-evenly">
             <h3>Filtros de busqueda</h3>
             <form action="./catalogue.php" class="d-flex gap-5" method="post">
-                <select name="Category" id="Category">
+                <select name="Category" id="Category" class="bg-light p-1">
                     <option value="all">no filtros</option>
                     <option value="electronic">Electronicos</option>
                     <option value="mobile">Mobiles</option>
@@ -140,13 +140,13 @@ mysqli_close($connection);
                     $discount = $value['P_PRICE'] - $discountValue;
                 ?>
                     <form method="post" action="catalogue.php?action=add&id=<?php echo $value["P_ID"]; ?>" data-aos="fade-up">
-                        <div style="background-color:#f1f1f1; border-radius:5px;" class="card shadow-sm overflow-hidden" style="height: 800px;">
+                        <div style="border-radius:5px; margin: 5px 5px 50px 5px; box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;" class="card border-light overflow-hidden" style="height: 800px;">
                             <img src="<?php
                                         if ($value["P_URL"]) {
                                             echo $value["P_URL"];
                                         } else {
                                             echo "https://www.fml.com.mx/wp-content/uploads/2016/04/Race-Registration-Image-Not-Found.png";
-                                        } ?>" class="img-responsive" width="400" height="400" style="object-fit: cover;" /><br />
+                                        } ?>" class="img-responsive" width="400" height="400" style="object-fit: cover;" title="<?php echo $value["P_NAME"]; ?>" /><br />
                             <article class="card-body d-flex flex-column justify-content-between">
                                 <article>
                                     <h4 class="card-title"><?php echo $value["P_NAME"]; ?></h4>
@@ -167,7 +167,7 @@ mysqli_close($connection);
                                         <a href="./productInfo.php?id=<?php echo $id ?>" class="btn btn-error">
                                             Detalles
                                         </a>
-                                        <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
+                                        <input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-info text-light" value="Añadir al carrito" />
                                     </article>
                                 </article>
                             </article>

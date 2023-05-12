@@ -24,13 +24,14 @@ mysqli_close($connection);
 
   <!-- bootstrap cdn -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../../global.css">
 </head>
 
 <body>
   <header>
-    <section class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <section class="navbar navbar-expand-lg  navbar-light bg-light position-fixed w-100 top-0 nav">
       <article class="container">
-        <a href="../../../index.php" class="navbar-brad link-warning">
+        <a href="../../../index.php" class="navbar-brad link-warning text-decoration-none text-info" style="transition: .3s ease-in-out;">
           <strong>Tech Store</strong>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,20 +39,17 @@ mysqli_close($connection);
         </button>
         <article class="collapse navbar-collapse" id="navbarHeader">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a href="../../../pages/catalogue.php" class="nav-link active">Catalogo</a></li>
-            <li class="nav-item"><a href="../../../pages/registerProducts.php" class="nav-link active">Registrar Producto</a></li>
+            <li class="nav-item"><a href="../../catalogue.php" class="nav-link active link-info text-dark">Catalogo</a></li>
           </ul>
-          <div class="cart_div">
-            <a href="../../../auth/logout.php" class="btn btn-primary">Logout</a>
-          </div>
+          <a href="../userProfile.php" class="btn text-decoration-none text-dark">Volver</a>
+          <a href="../../../auth/logout.php" class="btn btn-info text-light">Logout</a>
         </article>
       </article>
     </section>
   </header>
 
   <main>
-    <a href="../userProfile.php" class="m-5 text-decoration-none">Volver</a>
-    <section class="container mt-5 d-flex flex-column gap-5 align-items-center justify-content-evenly">
+    <section class="container mt-5 pt-5 d-flex flex-column gap-5 align-items-center justify-content-evenly">
       <h4>Aqui podras ver las graficas relacionadas con la app <span class="text-primary"><?php echo $_SESSION["user"] ?></span></h4>
     </section>
     <section class="container mt-5 mb-5">

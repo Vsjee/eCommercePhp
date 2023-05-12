@@ -19,13 +19,14 @@ session_start();
 
   <!-- css -->
   <link rel="stylesheet" href="../styleForm.css">
+  <link rel="stylesheet" href="../../global.css">
 </head>
 
 <body>
   <header>
-    <section class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <section class="navbar navbar-expand-lg  navbar-light bg-light position-fixed w-100 top-0 nav">
       <article class="container">
-        <a href="../../index.php" class="navbar-brad link-warning">
+        <a href="../../index.php" class="navbar-brad link-warning text-decoration-none text-info">
           <strong>Tech Store</strong>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,38 +34,16 @@ session_start();
         </button>
         <article class="collapse navbar-collapse" id="navbarHeader">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a href="../../pages/catalogue.php" class="nav-link active">Catalogo</a></li>
-            <li class="nav-item"><a href="../../pages/registerProducts.php" class="nav-link active">Registrar Producto</a></li>
+            <li class="nav-item"><a href="../../pages/catalogue.php" class="nav-link active link-info text-dark">Catalogo</a></li>
           </ul>
-          <div class="cart_div">
-            <?php
-            if (!empty($_SESSION["shopping_cart"])) {
-              echo count($_SESSION["shopping_cart"]);
-            ?>
-              <a href="../../pages/cart.php" class="btn btn-warning">
-                Carrito
-                <span>
-                  <?php
-                  if (!empty($_SESSION["shopping_cart"])) {
-                    echo count($_SESSION["shopping_cart"]);
-                  } else {
-                    echo 0;
-                  }
-                  ?>
-                </span>
-              </a>
-            <?php
-            }
-            ?>
-          </div>
         </article>
       </article>
     </section>
   </header>
 
   <main>
-    <section class="container mt-5 d-flex flex-column gap-5 align-items-center justify-content-evenly">
-      <h3>Sign in</h3>
+    <section class="container mt-5 mb-5 pt-5 d-flex flex-column gap-5 align-items-center justify-content-evenly">
+      <h3>REGISTRO</h3>
       <form method="post" action="./signinPhp.php" class="d-flex flex-column gap-4 form">
         <input type="text" class="form_input" name="Name" placeholder="Your name">
         <input type="text" class="form_input" name="Email" placeholder="Your email">
@@ -72,6 +51,7 @@ session_start();
         <input type="password" class="form_input" name="PasswordConfirm" placeholder="Confirm password">
         <input type="submit" name="login_user" class="form_submit" value="Crear cuenta">
       </form>
+      <a href="../login/login.php" class="text-decoration-none link-warning text-danger">Ya estas registrado? Inicia sessión</a>
     </section>
   </main>
 </body>
