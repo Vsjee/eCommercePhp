@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,16 +23,22 @@
     <div class="body">
       <header>
         <div>
-          <img src="../../../assets/images/bot.png" alt="">
+          <img src="../../../assets/images/bot.png" alt="bot image">
           <span class="chatbot-user">Botyuda</span>
         </div>
-        <a href="../userProfile.php">Volver</a>
+        <a href="../userProfile.php" class="text-decoration-none">Volver</a>
       </header>
       <main>
         <div class="ai-chatbot">
           <img src="../../../assets/images/bot.png" alt="">
           <div class="message">
-            <p>Hola usuario que tal? en que te puedo ayudar? =D
+            <p>Hola
+              <span class="text-primary">
+                <?php if (!empty($_SESSION["user"])) {
+                  echo $_SESSION["user"];
+                }
+                ?>
+              </span> que tal? en que te puedo ayudar? =D
             </p>
             <small class="botDate"></small>
           </div>
@@ -38,7 +50,6 @@
           <button>send</button>
         </form>
       </footer>
-
     </div>
   </section>
 </body>
@@ -52,22 +63,15 @@
   let data = document.querySelector("input");
   let botDate = document.querySelector(".botDate");
 
-  data.onkeydown = (e) => {
-    if (data.value != "") {
-      button.classList.add("show");
-    } else {
-      button.classList.remove("show");
-    }
-  }
+  let startDate = new Date();
+  botDate.append(startDate.toLocaleTimeString())
 
-  let date = new Date();
-
-  botDate.append(date.toLocaleTimeString())
-
-  //when adding a query
+  //query
   button.onclick = e => {
     e.preventDefault();
-    console.log(date.toLocaleTimeString());
+
+    let date = new Date();
+
     const ajax = new XMLHttpRequest();
     ajax.open("POST", "message.php", true);
     ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
