@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2023 at 03:13 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: May 13, 2023 at 12:17 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,7 +38,7 @@ CREATE TABLE `autochat` (
 --
 
 INSERT INTO `autochat` (`id`, `replies`, `queries`) VALUES
-(1, 'Hola, mucho gusto soy botyuda =D', 'Hola'),
+(1, 'Hola, mucho gusto soy botyuda 🤖', 'Hola'),
 (3, 'Esto es en lo que te puedo ayudar,\n                                                           1. Dudas sobre la compra\n                                                           2. Como eliminar cuenta de usuario\n                                                           3. Tiempo en que llega mi pedido?\n                                                           4. Cual es el limite de productos por compra?', 'Ayuda'),
 (4, 'Estas son algunas dudas frecuentes sobre la compra, 1C. Hacen envios a las afueras de bogota?\r\n                                                           2C. Puedo hacer una devoulción?\r\n                                                           3C. Metodos de pago\r\n                                                           4C. Es seguro comprar?\r\n                                                           \r\n                                                          ', '1'),
 (5, 'Para eliminar tu cuenta, por el momento no contamos con esa funcion, pero si puedes enviarnos un correo a techstore@techstore.com.co y te hariamos la eliminacion del sistema', '2'),
@@ -47,7 +47,8 @@ INSERT INTO `autochat` (`id`, `replies`, `queries`) VALUES
 (8, 'Por supuesto, a todos los rincones del pais, animate y compra!', '1C'),
 (9, 'Tienes maximo 15 dias desde el dia de la compra , ten encuenta el producto tiene que estar en perfecto estado de caso contrario no sera aceptada!', '2C'),
 (10, 'Manejamos, tarjetas de credito, PSE, mercado pago y efecty =D', '3C'),
-(11, 'No tienes que preocuparte ya que el sistema que utilizamos ser llama \"mercado pago\" lider a nivel mundial de pagos en linea!', '4C');
+(11, 'No tienes que preocuparte ya que el sistema que utilizamos ser llama \"mercado pago\" lider a nivel mundial de pagos en linea!', '4C'),
+(12, 'Mucho gusto, espero haberte ayudado, cuidate 😊', 'Gracias');
 
 -- --------------------------------------------------------
 
@@ -102,9 +103,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`U_ID`, `U_NAME`, `U_EMAIL`, `U_PASSWORD`, `P_TYPE`) VALUES
-(1, 'david', 'david@gmail.com', '123', 'user'),
 (2, 'Felipe', 'felipe@gmail.com', '123', 'admin'),
-(3, 'Frontend Developer', 'generic@gmail.com', '123', 'user');
+(3, 'Frontend Developer', 'generic@gmail.com', '123', 'user'),
+(5, 'David', 'david@gmail.com', '123', 'user');
 
 --
 -- Indexes for dumped tables
@@ -136,7 +137,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `autochat`
 --
 ALTER TABLE `autochat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -148,7 +149,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `U_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `U_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
