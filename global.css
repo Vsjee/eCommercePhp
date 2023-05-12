@@ -1,0 +1,63 @@
+a {
+  transition: 0.3s ease-in-out;
+}
+
+select,
+input,
+textarea {
+  transition: 0.5s ease;
+}
+
+select,
+option {
+  cursor: pointer;
+}
+
+select {
+  border: none;
+  background-color: rgb(248, 247, 247);
+}
+
+select:focus {
+  background-color: rgb(217, 242, 255);
+}
+
+input {
+  height: 50px;
+}
+
+input,
+textarea {
+  border-radius: 20px;
+  border: none;
+  background-color: rgb(248, 247, 247);
+}
+
+input:focus,
+textarea:focus {
+  background-color: rgb(217, 242, 255);
+  outline: none;
+}
+
+input[type='submit'] {
+  background-color: rgb(106, 203, 255);
+  border: none;
+  color: white;
+}
+
+input[type='submit']:hover {
+  background-color: rgb(48, 183, 255);
+}
+
+h5[class='prod__item']:hover {
+  color: rgb(48, 183, 255);
+}
+
+.nav {
+  z-index: 1;
+}
+
+div[id='containerBarras'],
+div[id='containerPie'] {
+  z-index: -1;
+}
