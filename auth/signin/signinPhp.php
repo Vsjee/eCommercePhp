@@ -20,9 +20,8 @@ if (mysqli_num_rows($query_user) > 0) {
   if ($Password === $PasswordConfirm) {
     $all = "SELECT U_NAME ,U_EMAIL, U_PASSWORD FROM users";
     $all_query = mysqli_query($connection, $all);
-    $all_rows = mysqli_num_rows($all_query) + 1;
 
-    $createUser = "INSERT INTO `users`(`U_ID`, `U_NAME`, `U_EMAIL`, `U_PASSWORD`, `P_TYPE`) VALUES ('$all_rows','$Name','$Email','$Password', 'user')";
+    $createUser = "INSERT INTO `users`(`U_ID`, `U_NAME`, `U_EMAIL`, `U_PASSWORD`, `P_TYPE`) VALUES (null,'$Name','$Email','$Password', 'user')";
     $res = mysqli_query($connection, $createUser);
 
     header("Location: ../login/login.php", true);
