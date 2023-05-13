@@ -25,6 +25,34 @@ mysqli_close($connection);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./glider/glider.css">
     <link rel="stylesheet" href="./global.css">
+
+    <style>
+        @keyframes background-pan {
+            from {
+                background-position: 0% center;
+            }
+
+            to {
+                background-position: -200% center;
+            }
+        }
+
+        .fancy__text {
+            animation: background-pan 4s linear infinite;
+            background: linear-gradient(90deg, rgb(179, 227, 252), rgb(48, 183, 255), rgb(179, 227, 252), rgb(48, 183, 255), rgb(179, 227, 252));
+            background-size: 200%;
+            background-clip: border-box;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            white-space: nowrap;
+        }
+
+        body {
+            background-image: url('./assets/images/a.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
 
 <body>
@@ -73,7 +101,7 @@ mysqli_close($connection);
 
     <main>
         <section class="container mt-5 pt-5">
-            <h1>Bienvenido a Tech store</h1>
+            <h1><strong>Bienvenido a <span class="fancy__text">TECH STORE</span>! </strong>✨</h1>
             <p>Aqui encontraras todo tipo de productos electronicos, y de ultima generación con los mejores precios de toda colombia y el mundo! animate y busca tus productos favoritos.</p>
         </section>
         <section class="container mt-5">
@@ -103,6 +131,10 @@ mysqli_close($connection);
             </div>
         </section>
     </main>
+
+    <footer class="bg-light text-center mt-5">
+        Develop by <strong><span class="fancy__text">David Hernandez</span></strong>
+    </footer>
 
     <script src="./glider/glider.js"></script>
     <script src="./js/gliderInit.js"></script>

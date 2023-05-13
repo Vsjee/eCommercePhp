@@ -56,6 +56,26 @@ if (isset($_GET["action"])) {
   <!-- bootstrap cdn -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <style>
+    @keyframes background-pan {
+      from {
+        background-position: 0% center;
+      }
+
+      to {
+        background-position: -200% center;
+      }
+    }
+
+    .fancy__text {
+      animation: background-pan 4s linear infinite;
+      background: linear-gradient(90deg, rgb(179, 227, 252), rgb(48, 183, 255), rgb(179, 227, 252), rgb(48, 183, 255), rgb(179, 227, 252));
+      background-size: 200%;
+      background-clip: border-box;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+    }
+
     .img {
       object-fit: cover;
       height: 150px;
@@ -162,6 +182,11 @@ if (isset($_GET["action"])) {
       ?>
     </table>
   </div>
+
+  <footer class="bg-light text-center mt-5">
+    Develop by <strong><span class="fancy__text">David Hernandez</span></strong>
+  </footer>
+
 </body>
 
 </html>

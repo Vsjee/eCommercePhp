@@ -20,6 +20,28 @@ session_start();
   <!-- css -->
   <link rel="stylesheet" href="../styleForm.css">
   <link rel="stylesheet" href="../../global.css">
+
+  <style>
+    @keyframes background-pan {
+      from {
+        background-position: 0% center;
+      }
+
+      to {
+        background-position: -200% center;
+      }
+    }
+
+    .fancy__text {
+      animation: background-pan 4s linear infinite;
+      background: linear-gradient(90deg, rgb(179, 227, 252), rgb(48, 183, 255), rgb(179, 227, 252), rgb(48, 183, 255), rgb(179, 227, 252));
+      background-size: 200%;
+      background-clip: border-box;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+    }
+  </style>
 </head>
 
 <body>
@@ -52,6 +74,11 @@ session_start();
       <a href="../signin/signin.php" class="text-decoration-none link-warning text-danger">No tienes cuenta? create una.</a>
     </section>
   </main>
+
+  <footer class="bg-light text-center mt-5">
+    Develop by <strong><span class="fancy__text">David Hernandez</span></strong>
+  </footer>
+
 </body>
 
 </html>
