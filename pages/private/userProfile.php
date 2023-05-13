@@ -19,7 +19,7 @@ if (empty($_SESSION["user"])) {
 
   if ($result["P_TYPE"] == "admin") {
     $isAdmin = true;
-    $usersListQuery = "SELECT U_ID, U_NAME, U_EMAIL, U_PASSWORD, P_TYPE FROM `users`";
+    $usersListQuery = "SELECT U_ID, U_NAME, U_EMAIL, U_PASSWORD, P_TYPE FROM `users` WHERE P_TYPE != 'admin'";
     $usersListResult = mysqli_query($connection, $usersListQuery);
   } else {
     $isAdmin = false;
